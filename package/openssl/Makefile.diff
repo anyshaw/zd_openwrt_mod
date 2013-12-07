@@ -1,0 +1,27 @@
+--- a/trunk/package/libs/openssl/Makefile	2013-12-05 13:56:00.394683418 +0800
++++ a/trunk/package/libs/openssl/Makefile	2013-12-05 13:57:19.990687241 +0800
+@@ -49,7 +49,7 @@
+   SECTION:=libs
+   SUBMENU:=SSL
+   CATEGORY:=Libraries
+-  DEPENDS:=+zlib
++  DEPENDS:=+zlib +libpthread
+   TITLE+= (libraries)
+   MENU:=1
+ endef
+@@ -117,13 +117,13 @@
+ 			--openssldir=/etc/ssl \
+ 			$(TARGET_CPPFLAGS) \
+ 			$(TARGET_LDFLAGS) -ldl \
+-			-DOPENSSL_SMALL_FOOTPRINT \
++			-DOPENSSL_THREADS -pthread -D_REENTRANT -D_THREAD_SAFE -D_THREADSAFE \
+ 			$(OPENSSL_NO_CIPHERS) \
+ 			$(OPENSSL_OPTIONS) \
+ 	)
+ endef
+ 
+-TARGET_CFLAGS += $(FPIC)
++TARGET_CFLAGS += $(FPIC) -DOPENSSL_THREADS -pthread -D_REENTRANT -D_THREAD_SAFE -D_THREADSAFE
+ 
+ define Build/Compile
+ 	# XXX: OpenSSL "make depend" will look for installed headers before its own,

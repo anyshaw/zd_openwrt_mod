@@ -81,3 +81,6 @@ config cpulimit
 	
 config nwan
 	option init nwan
+
+config shairport
+        option init shairport

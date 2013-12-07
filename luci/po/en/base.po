@@ -2854,6 +2854,9 @@ msgstr "cpulimit"
 msgid "nwan"
 msgstr "nwan"
 
+msgid "shairport"
+msgstr "shairport"
+
 #~ msgid "Active Leases"
 #~ msgstr "Active Leases"
 
