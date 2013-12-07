@@ -9,13 +9,7 @@
    TITLE+= (libraries)
    MENU:=1
  endef
-@@ -117,13 +117,13 @@
- 			--openssldir=/etc/ssl \
- 			$(TARGET_CPPFLAGS) \
- 			$(TARGET_LDFLAGS) -ldl \
- 			-DOPENSSL_SMALL_FOOTPRINT \
- 			$(OPENSSL_NO_CIPHERS) \
- 			$(OPENSSL_OPTIONS) \
+@@ -123,7 +123,7 @@
  	)
  endef
  
