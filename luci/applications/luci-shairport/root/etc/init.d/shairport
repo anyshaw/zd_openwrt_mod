@@ -3,6 +3,8 @@
 START=99
 NAME=shairport
 
+PID_FILE=/var/run/$NAME.pid
+
 handle_airplay() {
 	local config="$1"
 	local custom="$2"
@@ -24,7 +26,7 @@ handle_airplay() {
 	config_get ctl "$1" ctl "default"
 	config_get volume "$1" volume "Speaker"
 
-	shairport -a "$bname" -b $initbuf -p $port -d
+	shairport -a "$bname" -b $initbuf -p $port -d -P $PID_FILE
 }
 
 start() {
@@ -41,5 +43,6 @@ start() {
 }
 
 stop() {
-	killall shairport
+	kill `cat $PID_FILE` > /dev/null 2>&1
+	rm -rf $PID_FILE
 }
