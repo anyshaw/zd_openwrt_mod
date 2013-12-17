@@ -1,0 +1,22 @@
+--- vlan.lua	2013-12-16 23:20:40.553929056 +0800
++++ vlan.lua	2013-12-17 21:53:46.185612729 +0800
+@@ -25,8 +25,8 @@
+ 		local has_vlan4k  = nil
+ 		local has_jumbo3  = nil
+ 		local min_vid     = 0
+-		local max_vid     = 16
+-		local num_vlans   = 16
++		local max_vid     = 96
++		local num_vlans   = 96
+ 		local num_ports   = 6
+ 		local cpu_port    = 5
+ 
+@@ -57,7 +57,7 @@
+ 						line:match("ports: (%d+) %(cpu @ (%d+)%), vlans: (%d+)")
+ 
+ 					num_ports  = tonumber(num_ports) or  6
+-					num_vlans  = tonumber(num_vlans) or 16
++					num_vlans  = tonumber(num_vlans) or 96
+ 					cpu_port   = tonumber(cpu_port)  or  5
+ 					min_vid    = 1
+ 
