@@ -34,10 +34,10 @@
 +	+PACKAGE_luci-app-dnsfilter:libc \
 +	+PACKAGE_luci-app-dnsfilter:bash \
 +	+PACKAGE_luci-app-dnsfilter:screen \
-+	+PACKAGE_luci-dnsfilter:wget))
++	+PACKAGE_luci-app-dnsfilter:wget))
 +
 +$(eval $(call application,cpulimit,cpulimit-ng LuCI configuration module,\
-+	+PACKAGE_luci-cpulimit:cpulimit-ng))
++	+PACKAGE_luci-app-cpulimit:cpulimit-ng))
 +
 +$(eval $(call application,nwan,nwan configuration module,\
 +	+PACKAGE_luci-app-nwan:libc \
