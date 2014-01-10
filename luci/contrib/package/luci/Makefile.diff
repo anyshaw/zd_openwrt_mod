@@ -1,6 +1,6 @@
---- a/luci/contrib/package/luci/Makefile
-+++ b/luci/contrib/package/luci/Makefile
-@@ -464,6 +464,52 @@
+--- Makefile	2014-01-10 22:29:22.911756010 +0800
++++ Makefile	2014-01-10 22:30:10.979756900 +0800
+@@ -464,6 +464,48 @@
  $(eval $(call application,watchcat,LuCI Support for Watchcat,\
  	+PACKAGE_luci-app-watchcat:watchcat))
  
@@ -12,8 +12,6 @@
 +
 +$(eval $(call application,shadowsocks,LuCI Support for shadowsocks,\
 +	+PACKAGE_luci-app-shadowsocks:shadowsocks-libev \
-+	+PACKAGE_luci-app-shadowsocks:kmod-ipt-nat \
-+	+PACKAGE_luci-app-shadowsocks:kmod-ipt-nat-extra \
 +	+PACKAGE_luci-app-shadowsocks:kmod-ipt-ipset \
 +	+PACKAGE_luci-app-shadowsocks:ipset))
 +
@@ -25,8 +23,6 @@
 +
 +$(eval $(call application,redsocks2,LuCI Support for redsocks2,\
 +	+PACKAGE_luci-app-redsocks2:redsocks2 \
-+	+PACKAGE_luci-app-redsocks2:kmod-ipt-nat \
-+	+PACKAGE_luci-app-redsocks2:kmod-ipt-nat-extra \
 +	+PACKAGE_luci-app-redsocks2:kmod-ipt-ipset \
 +	+PACKAGE_luci-app-redsocks2:ipset))
 +
