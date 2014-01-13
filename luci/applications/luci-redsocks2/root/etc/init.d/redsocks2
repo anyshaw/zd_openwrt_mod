@@ -96,13 +96,13 @@ start() {
 				do
 					ipset -A whitelist $IP
 				done	
+				if [ "$proxytype" = 'goagent' ]; then
+					iptables -t nat -A REDSOCKS2 -p tcp --dport 80 -m set ! --match-set whitelist dst -j REDIRECT --to-ports "$localport"
+					iptables -t nat -A REDSOCKS2 -p tcp --dport 443 -m set ! --match-set whitelist dst -j REDIRECT --to-ports "$localport2"
+				else
+					iptables -t nat -A REDSOCKS2 -p tcp -m set ! --match-set whitelist dst -j REDIRECT --to-ports "$localport"
+				fi
 			}
-			if [ "$proxytype" = 'goagent' ]; then
-				iptables -t nat -A REDSOCKS2 -p tcp --dport 80 -m set ! --match-set whitelist dst -j REDIRECT --to-ports "$localport"
-				iptables -t nat -A REDSOCKS2 -p tcp --dport 443 -m set ! --match-set whitelist dst -j REDIRECT --to-ports "$localport2"
-			else
-				iptables -t nat -A REDSOCKS2 -p tcp -m set ! --match-set whitelist dst -j REDIRECT --to-ports "$localport"
-			fi
 		}
 	fi
 	iptables -t nat -I zone_lan_prerouting -j REDSOCKS2

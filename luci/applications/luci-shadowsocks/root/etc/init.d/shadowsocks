@@ -42,7 +42,6 @@ start() {
 		
 		iptables -t nat -N SHADOWSOCKS
 		
-		iptables -t nat -A SHADOWSOCKS -d $remoteip -j RETURN
 		iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN
 		iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN
 		iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN
@@ -51,6 +50,7 @@ start() {
 		iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN
 		iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
 		iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
+		iptables -t nat -A SHADOWSOCKS -d $remoteip -j RETURN
 
 		if [ "$whitelist_enabled" = '0' ] && [ "$blacklist_enabled" = '0' ]; then
 		
@@ -80,8 +80,8 @@ start() {
 					do
 						ipset -A whitelist $IP
 					done	
+					iptables -t nat -A SHADOWSOCKS -p tcp -m set ! --match-set whitelist dst -j REDIRECT --to-ports $redir_port
 				}
-				iptables -t nat -A SHADOWSOCKS -p tcp -m set ! --match-set whitelist dst -j REDIRECT --to-ports $redir_port	
 			}
 		fi
 		iptables -t nat -I zone_lan_prerouting -j SHADOWSOCKS
