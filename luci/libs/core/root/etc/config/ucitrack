@@ -84,3 +84,6 @@ config nwan
 
 config shairport
         option init shairport
+
+config gmediarender
+        option init gmediarender

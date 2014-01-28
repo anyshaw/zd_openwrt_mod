@@ -1,0 +1,32 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+NAME=gmediarender
+
+PID_FILE=/var/run/$NAME.pid
+
+handle_gmediaplay() {
+	local config="$1"
+
+	config_get bname "$1" bname "gmediaplay"
+
+	gmediarender -f "$bname" -d -P $PID_FILE
+}
+
+start() {
+	config_load gmediarender
+	local enabled
+	config_get enabled config enabled
+	[ $enabled -eq 0 ] && {
+		stop
+		return 0
+	}
+
+	config_load gmediaplay
+	config_foreach handle_gmediaplay gmediaplay
+}
+
+stop() {
+	kill -9 `cat $PID_FILE` > /dev/null 2>&1
+	rm -rf $PID_FILE
+}
