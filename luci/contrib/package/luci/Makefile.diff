@@ -47,7 +47,7 @@
 +	+PACKAGE_luci-app-shairport:shairport-new))
 +
 +$(eval $(call application,gmediarender,LuCI Support for gmediarender,\
-+       +PACKAGE_luci-app-gmediarender:gmediarender))
++	+PACKAGE_luci-app-gmediarender:gmediarender))
 +
  ### Server Gateway Interfaces ###
  define sgi
