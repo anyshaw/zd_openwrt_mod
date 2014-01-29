@@ -10,8 +10,12 @@ ipset_whitelist="/etc/ipset/whitelist"
 
 start() {
 	
+	# HACK fd
+	ulimit -n 4096
+	
 	config_load "shadowsocks"
 	local enabled remote rport lport pass redir_enabled redir_port whitelist_enabled blacklist_enabled
+	
 	config_get enabled config enabled
 	config_get remote config remote_server
 	config_get rport config remote_port
@@ -97,8 +101,8 @@ ss_local_stop() {
 ss_redir_stop() {
 	service_stop /usr/bin/ss-redir && {
 		fw3 -q restart
-		ipset destroy whitelist
-		ipset destroy blacklist
+		ipset destroy whitelist &> /dev/null
+		ipset destroy blacklist &> /dev/null
 		rm -rf "$ss_redir_PID_FILE"
 	}
 }

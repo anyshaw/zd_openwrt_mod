@@ -8,8 +8,10 @@ ipset_whitelist="/etc/ipset/whitelist"
 
 start() {
 	
-	config_load "$APP"
+	# HACK fd
+	ulimit -n 4096
 	
+	config_load "$APP"
 	local enabled localport proxytype autoproxy timeout proxyip proxyport whitelist_enabled blacklist_enabled
 	
 	config_get enabled config enabled
@@ -111,6 +113,6 @@ start() {
 stop() {
 	service_stop /usr/sbin/redsocks2 && rm -rf $PID_FILE
 	fw3 -q restart
-	ipset destroy whitelist
-	ipset destroy blacklist
+	ipset destroy whitelist &> /dev/null
+	ipset destroy blacklist &> /dev/null
 }
