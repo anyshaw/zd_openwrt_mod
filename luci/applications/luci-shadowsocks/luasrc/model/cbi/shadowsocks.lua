@@ -6,9 +6,6 @@ local fs = require "nixio.fs"
 
 local sslocal =(luci.sys.call("pidof ss-local > /dev/null") == 0)
 local ssredir =(luci.sys.call("pidof ss-redir > /dev/null") == 0)
-
-local button =""
-
 if sslocal or ssredir then	
 	m = Map("shadowsocks", translate("shadowsocks"), translate("shadowsocks is running"))
 else

@@ -5,7 +5,6 @@ RA-MOD
 local fs = require "nixio.fs"
 
 local running=(luci.sys.call("pidof shairport > /dev/null") == 0)
-local button=""
 if running then	
 	m = Map("shairport", translate("shairport"), translate("shairport is running"))
 else

@@ -5,7 +5,6 @@ RA-MOD
 local fs = require "nixio.fs"
 
 local running=(luci.sys.call("pidof redsocks2 > /dev/null") == 0)
-local button=""
 if running then	
 	m = Map("redsocks2", translate("redsocks2"), translate("redsocks2 is running"))
 else

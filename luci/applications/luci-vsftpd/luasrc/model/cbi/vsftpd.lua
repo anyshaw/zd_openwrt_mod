@@ -5,7 +5,6 @@ RA-MOD
 local fs = require "nixio.fs"
 
 local running=(luci.sys.call("pidof vsftpd > /dev/null") == 0)
-local button=""
 if running then	
 	m = Map("vsftpd", translate("vsftpd"), translate("vsftpd is running"))
 else

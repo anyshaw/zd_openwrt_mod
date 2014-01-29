@@ -5,7 +5,6 @@ RA-MOD
 local fs = require "nixio.fs"
 
 local running=(luci.sys.call("pidof pdnsd > /dev/null") == 0)
-local button=""
 if running then	
 	m = Map("pdnsd", translate("pdnsd"), translate("pdnsd is running"))
 else

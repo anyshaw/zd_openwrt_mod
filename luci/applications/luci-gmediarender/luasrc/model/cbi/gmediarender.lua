@@ -5,7 +5,6 @@ RA-MOD
 local fs = require "nixio.fs"
 
 local running=(luci.sys.call("pidof gmediarender > /dev/null") == 0)
-local button=""
 if running then	
 	m = Map("gmediarender", translate("gmediarender"), translate("gmediarender is running"))
 else
