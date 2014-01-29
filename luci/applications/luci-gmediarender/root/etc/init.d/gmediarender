@@ -9,8 +9,9 @@ handle_gmediaplay() {
 	local config="$1"
 
 	config_get bname "$1" bname "gmediaplay"
+	config_get ipaddr "$1" ipaddr "192.168.1.1"
 
-	gmediarender -f "$bname" -d -P $PID_FILE
+	gmediarender -I "$ipaddr" -f "$bname" -d -P $PID_FILE
 }
 
 start() {
