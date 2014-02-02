@@ -11,7 +11,7 @@ handle_gmediaplay() {
 	config_get bname "$1" bname "gmediaplay"
 	config_get ipaddr "$1" ipaddr "192.168.1.1"
 
-	mac=`ifconfig eth0 | awk '/HWaddr/{ print $5 }' | sed 's/://g'`
+	mac=`ifconfig | awk '/HWaddr/{ print $5;exit }' | sed 's/://g'`
 
 	gmediarender -I "$ipaddr" -f "$bname" -u "e6572b54-f3c7-2d91-2fb5-"$mac -d -P $PID_FILE
 }
