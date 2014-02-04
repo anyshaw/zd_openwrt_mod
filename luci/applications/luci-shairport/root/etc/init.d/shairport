@@ -4,6 +4,8 @@ START=99
 NAME=shairport
 
 PID_FILE=/var/run/$NAME.pid
+LOG_FILE=/var/log/$NAME.log
+ERR_FILE=/var/log/$NAME.err
 
 handle_airplay() {
 	local config="$1"
@@ -26,7 +28,7 @@ handle_airplay() {
 	config_get ctl "$1" ctl "default"
 	config_get volume "$1" volume "Speaker"
 
-	shairport -a "$bname" -b $initbuf -p $port -d -P $PID_FILE
+	service_start /usr/bin/$NAME -a "$bname" -b $initbuf -p $port -d -P $PID_FILE -l $LOG_FILE -e $ERR_FILE
 }
 
 start() {

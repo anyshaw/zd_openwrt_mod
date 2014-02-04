@@ -1,9 +1,10 @@
 #!/bin/sh /etc/rc.common
 
-START=99
+START=98
 NAME=gmediarender
 
 PID_FILE=/var/run/$NAME.pid
+LOG_FILE=/var/log/$NAME.log
 
 handle_gmediaplay() {
 	local config="$1"
@@ -13,7 +14,7 @@ handle_gmediaplay() {
 
 	mac=`ifconfig | awk '/HWaddr/{ print $5;exit }' | sed 's/://g'`
 
-	gmediarender -I "$ipaddr" -f "$bname" -u "e6572b54-f3c7-2d91-2fb5-"$mac -d -P $PID_FILE
+	service_start /usr/sbin/$NAME -I "$ipaddr" -f "$bname" -u "e6572b54-f3c7-2d91-2fb5-"$mac -d -P $PID_FILE --logfile $LOG_FILE
 }
 
 start() {
