@@ -31,6 +31,7 @@ start() {
 }
 
 stop() {
-	kill -9 `cat $PID_FILE` > /dev/null 2>&1
+	# kill -9 `cat $PID_FILE` > /dev/null 2>&1
+	service_stop /usr/sbin/$NAME
 	rm -rf $PID_FILE
 }
