@@ -12,9 +12,9 @@ PKG_VERSION:=0.0.7-git
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=git://github.com/hzeller/gmrender-resurrect.git
+PKG_SOURCE_URL:=git://github.com/ademenev/gmrender-resurrect-openhome.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=45346446a25c353152c8a68ae64bb5deb6c855a3
+PKG_SOURCE_VERSION:=ad75b67cc3eadde4325fd7917ee12e982b48c23f
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_FIXUP:=autoreconf
