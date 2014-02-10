@@ -44,6 +44,8 @@ define Package/tsocks/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tsocks $(1)/usr/bin/
 	$(CP) $(PKG_INSTALL_DIR)/lib/libtsocks.so{,*} $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_CONF) ./files/tsocks.conf $(1)/etc/tsocks.conf
 endef
 
 $(eval $(call BuildPackage,tsocks))
