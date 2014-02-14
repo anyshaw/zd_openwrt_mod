@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/gmediarender
   SECTION:=multimedia
   CATEGORY:=Multimedia
-  DEPENDS:= +gstreamer +glib2 +libupnp
+  DEPENDS:=+libupnp +gstreamer +gstreamer-utils
   TITLE:=A Headless UPnP Renderer
 endef
 
