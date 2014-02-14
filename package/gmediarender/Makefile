@@ -17,10 +17,6 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=ad75b67cc3eadde4325fd7917ee12e982b48c23f
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
-PKG_FIXUP:=autoreconf
-PKG_INSTALL=1
-PKG_REMOVE_FILES:=autogen.sh aclocal.m4
-
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
@@ -37,13 +33,22 @@ define Package/gmediarender/description
   from a UPnP media server.
 endef
 
-CONFIGURE_ARGS+= \
-	--with-build-cc="$(HOSTCC)" \
-	--prefix="\usr"
+define Build/Configure
+	(cd $(PKG_BUILD_DIR); ./autogen.sh );
+	$(call Build/Configure/Default)
+endef
+
+define Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR) \
+		DESTDIR="$(PKG_INSTALL_DIR)" \
+		all install
+endef
 
 define Package/gmediarender/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(PKG_NAME) $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/usr/share/gmediarender
+	$(CP) $(PKG_INSTALL_DIR)/usr/share/$(PKG_NAME)/*.png $(1)/usr/share/gmediarender/
 endef
 
 $(eval $(call BuildPackage,gmediarender))

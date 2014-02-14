@@ -14,7 +14,7 @@ handle_gmediaplay() {
 
 	mac=`ifconfig | awk '/HWaddr/{ print $5;exit }' | sed 's/://g'`
 
-	service_start /usr/sbin/$NAME -I "$ipaddr" -f "$bname" -u "e6572b54-f3c7-2d91-2fb5-"$mac -d -P $PID_FILE --logfile $LOG_FILE
+	service_start /usr/bin/$NAME -I "$ipaddr" -f "$bname" -u "e6572b54-f3c7-2d91-2fb5-"$mac -d -P $PID_FILE --logfile $LOG_FILE
 }
 
 start() {
@@ -32,6 +32,6 @@ start() {
 
 stop() {
 	# kill -9 `cat $PID_FILE` > /dev/null 2>&1
-	service_stop /usr/sbin/$NAME
+	service_stop /usr/bin/$NAME
 	rm -rf $PID_FILE
 }
